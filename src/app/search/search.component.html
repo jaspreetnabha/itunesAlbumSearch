@@ -1,0 +1,35 @@
+<nav class="navbar navbar-light bg-faded">
+  <a class="navbar-brand" [routerLink]="['search']">iTunes Album Search App
+  </a>
+</nav>
+<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2">
+    <input type="search" class="form-control" placeholder="Enter search string" #search>
+  </div>
+  <button type="button" class="btn btn-primary mb-2" (click)="onSearch(search.value)">
+    Search
+  </button>
+</form>
+
+<hr />
+
+<div class="text-center">
+  <p class="lead" *ngIf="loading">Loading...</p>
+</div>
+
+<div class="ml-4">
+  <ul class="list-unstyled">
+    <ng-container *ngFor="let album of albums; let first = first">
+      <li class="media pb-2" *ngIf='!first'>
+        <div class="media-body">
+          <img class="mr-3" src="{{album.artworkUrl60}}">
+          <a target="_blank" href="{{album.collectionViewUrl}}">{{ album.collectionName }}
+          </a>
+          <span class="text-muted">by</span> {{ album.artistName }}
+
+        </div>
+      </li>
+    </ng-container>
+
+  </ul>
+</div>
